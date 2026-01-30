@@ -4,9 +4,12 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
 import com.pedropathing.ftc.drivetrains.MecanumConstants;
+import com.pedropathing.ftc.localization.Encoder;
+import com.pedropathing.ftc.localization.constants.DriveEncoderConstants;
 import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
 
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
@@ -16,6 +19,7 @@ public class Constants {
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
+                .driveEncoderLocalizer(localizerConstants)
                 .pathConstraints(pathConstraints)
                 .mecanumDrivetrain(driveConstants)
                 .build();
@@ -30,5 +34,27 @@ public class Constants {
             .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
             .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
+            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
+            .useBrakeModeInTeleOp(true);
+
+    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
+            .rightFrontMotorName("frontRight")
+            .rightRearMotorName("backRight")
+            .leftRearMotorName("backLeft")
+            .leftFrontMotorName("frontLeft")
+            .leftFrontEncoderDirection(Encoder.REVERSE)
+            .leftRearEncoderDirection(Encoder.FORWARD)
+            .rightFrontEncoderDirection(Encoder.FORWARD)
+            .rightRearEncoderDirection(Encoder.REVERSE)
+            .robotWidth(11.5)
+            .robotLength(7);
+
+    //public static PinpointConstants localizerConstants = new PinpointConstants()
+    //        .forwardPodY(-5)
+    //        .strafePodX(0.5)
+    //        .distanceUnit(DistanceUnit.INCH)
+    //        .hardwareMapName("pinpoint")
+    //        .encoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD)
+    //        .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
+    //        .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD);
 }
