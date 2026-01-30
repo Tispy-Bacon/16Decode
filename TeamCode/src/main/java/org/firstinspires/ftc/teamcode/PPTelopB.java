@@ -18,15 +18,14 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Rotate;
 import org.firstinspires.ftc.teamcode.subsystems.Shooter;
-import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.function.Supplier;
 
 @Configurable
 @TeleOp(name = "PPTelop with Controls")
-public class PPTelopR extends OpMode {
+public class PPTelopB extends OpMode {
     // Target Point
-    private static final double TARGET_X = 135.0;
+    private static final double TARGET_X = 8.0;
     private static final double TARGET_Y = 137.0;
     public static Pose startingPose; //See ExampleAuto to understand how to use this
     // PID Controllers
